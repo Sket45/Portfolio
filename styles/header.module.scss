@@ -1,0 +1,49 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  background: url("../public/images/background.jpg");
+  background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  scroll-snap-align: start;
+
+  &_sky {
+  }
+  &_credentials {
+    display: flex;
+    position: absolute;
+    top: 35%;
+    bottom: 0;
+    right: 5%;
+    flex-direction: column;
+    color: white;
+    z-index: 2;
+
+    &_slogan {
+      // display: none;
+      font-size: calc(0.75em + 1vh);
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    }
+    &_name {
+      // display: none;
+      z-index: 2;
+      font-size: calc(6em + 1vh);
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-shadow: rgba(0, 0, 0, 0.325) 0px 3.75px 15.9375px;
+    }
+    &_title {
+      // display: none;
+      font-size: calc(3em + 1vh);
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-shadow: rgba(0, 0, 0, 0.325) 0px 3.75px 15.9375px;
+    }
+  }
+
+  &_buttons {
+    // display: none;
+    display: flex;
+  }
+}

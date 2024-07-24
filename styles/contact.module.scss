@@ -1,0 +1,143 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  background-color: #001033;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_box {
+    height: 65%;
+    width: 75%;
+    margin-left: 5%;
+
+    border: 2px solid #724753;
+    display: flex;
+
+    &_leftBg {
+      height: 100%;
+      width: 70%;
+
+      background: url(../public/images/bgTile.png);
+
+      border-right: 2px solid #724753;
+      z-index: 2;
+      overflow: hidden;
+
+      &_image {
+        position: absolute;
+        height: 90%;
+        width: 45%;
+        top: 5%;
+        left: -5%;
+        border: 15px solid transparent;
+        background: url(../public/images/Fileportes.png) padding-box no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: -15px;
+          left: -15px;
+          right: -15px;
+          bottom: -15px;
+          z-index: -1;
+          background: inherit;
+          background-clip: border-box;
+          border: inherit;
+          border-color: transparent;
+          filter: blur(5px) brightness(125%);
+          clip-path: inset(0);
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: -15px;
+          left: -15px;
+          right: -15px;
+          bottom: -15px;
+          z-index: -2;
+          background: inherit;
+          background-clip: border-box;
+          border: inherit;
+          border-color: transparent;
+          filter: blur(50px) brightness(400%);
+          box-shadow: inset 50px 0 0px 30px;
+          clip-path: inset(0);
+        }
+      }
+    }
+
+    &_rightBg {
+      position: relative;
+      height: 100%;
+      width: 30%;
+      top: 0;
+      right: 0;
+      background-color: #6d324871;
+
+      &_circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+
+        &::after {
+          content: "";
+          position: absolute;
+          height: 80%;
+          width: calc(200% - 4px);
+          top: 10%;
+          left: -100%;
+          border: 2px solid #724753;
+          border-radius: 50%;
+        }
+      }
+
+      &_info {
+        position: absolute;
+        height: 100%;
+        width: 200%;
+        top: 0;
+        left: -100%;
+        z-index: 2;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5%;
+
+        font-size: calc(2.5em + 1vh);
+        color: white;
+
+        &_icon {
+          border: 2px solid #724753;
+          border-radius: 50%;
+          width: 10%;
+          text-align: center;
+          backdrop-filter: blur(5px) brightness(160%);
+        }
+
+        .triangle {
+          width: 3%;
+          height: 1.5%;
+          background-color: #b58591;
+          /* HTML: <div class="triangle"></div> */
+          aspect-ratio: 1 / cos(30deg);
+          clip-path: polygon(50% 100%, 100% 0, 0 0);
+        }
+
+        h2 {
+          font-size: calc(0.75em + 1vh);
+          text-align: center;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  background-color: #001033;
+}
+
+body {
+  height: 200%;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "Montreal Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Montreal Regular"),
+    url("../public/font/Montreal-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vi Hai Duong";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Vi Hai Duong"),
+    url("../public/font/Vi-Hai-Duong.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Futura PT";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: local("../public/font/FuturaPT-Light.woff") format("woff"),
+    local("../public/font/FuturaPT-Light.woff2") format("woff2");
+}

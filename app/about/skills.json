@@ -1,0 +1,115 @@
+[
+  {
+    "name": "Javascript",
+    "time": 4,
+    "knowledge": 80,
+    "icon": "https://img.icons8.com/color/96/000000/javascript.png",
+    "type": "Programming Languages"
+  },
+  {
+    "name": "TypeScript",
+    "time": 1,
+    "knowledge": 65,
+    "icon": "https://img.icons8.com/color/96/000000/typescript.png",
+    "type": "Programming Languages"
+  },
+  {
+    "name": "C++",
+    "time": 1.5,
+    "knowledge": 50,
+    "icon": "https://img.icons8.com/color/96/000000/c-plus-plus-logo.png",
+    "type": "Programming Languages"
+  },
+  {
+    "name": "Python",
+    "time": "5 months",
+    "knowledge": 40,
+    "icon": "https://img.icons8.com/color/96/000000/python.png",
+    "type": "Programming Languages"
+  },
+  {
+    "name": "HTML/CSS",
+    "time": 4,
+    "knowledge": 95,
+    "icon": "https://img.icons8.com/color/96/000000/html-5.png",
+    "type": "Web Technologies"
+  },
+  {
+    "name": "SASS",
+    "time": 4,
+    "knowledge": 90,
+    "icon": "https://img.icons8.com/color/96/000000/sass.png",
+    "type": "Web Technologies"
+  },
+  {
+    "name": "React",
+    "time": 1.5,
+    "knowledge": 80,
+    "icon": "https://img.icons8.com/color/96/000000/react-native.png",
+    "type": "Web Technologies"
+  },
+  {
+    "name": "Next.js",
+    "time": 1,
+    "knowledge": 80,
+    "icon": "https://img.icons8.com/color/96/000000/nextjs.png",
+    "type": "Web Technologies"
+  },
+  {
+    "name": "jQuery",
+    "time": 2,
+    "knowledge": 60,
+    "icon": "https://img.icons8.com/ios-filled/100/000000/jquery.png",
+    "type": "Libraries and Frameworks"
+  },
+  {
+    "name": "NodeJS",
+    "time": 2,
+    "knowledge": 70,
+    "icon": "https://img.icons8.com/color/96/000000/nodejs.png",
+    "type": "Libraries and Frameworks"
+  },
+  {
+    "name": "i18n",
+    "time": "6 months",
+    "knowledge": 80,
+    "icon": "https://img.icons8.com/color/96/000000/international.png",
+    "type": "Libraries and Frameworks"
+  },
+  {
+    "name": "MongoDB",
+    "time": 1,
+    "knowledge": 70,
+    "icon": "https://img.icons8.com/color/96/000000/mongodb.png",
+    "type": "Databases"
+  },
+
+  {
+    "name": "Adobe Photoshop",
+    "time": 3,
+    "knowledge": 65,
+    "icon": "https://img.icons8.com/color/96/000000/adobe-photoshop.png",
+    "type": "Tools and Platforms"
+  },
+  {
+    "name": "Git",
+    "time": 1,
+    "knowledge": 90,
+    "icon": "https://img.icons8.com/?size=100&id=12599&format=png&color=000000",
+    "type": "Tools and Platforms"
+  },
+  {
+    "name": "AWS",
+    "time": 1,
+    "knowledge": 60,
+    "icon": "https://img.icons8.com/color/96/000000/amazon-web-services.png",
+    "type": "Tools and Platforms"
+  },
+  {
+    "name": "SEO",
+    "time": 1,
+    "knowledge": 80,
+    "icon": "https://cdn-icons-png.flaticon.com/512/273/273564.png",
+    "type": "Tools and Platforms"
+  }
+]

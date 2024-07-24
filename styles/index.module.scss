@@ -1,0 +1,17 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  background-color: #001033;
+  // background-color: rgb(81, 128, 172);
+
+  scroll-behavior: smooth;
+
+  font-family: "Montreal Regular", sans-serif;
+
+  &_footer {
+    height: 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    background-color: white;
+  }
+}
