@@ -37,7 +37,7 @@ const Home: React.FC = () => {
         isNavLoaded ? (
           <>
             <Header />
-            <Nav />
+            <Nav onLoad={() => {}} />
           </>
         ) : (
           <>
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
       ) : (
         <>
           <Header />
-          <Nav />
+          <Nav onLoad={() => {}} />
         </>
       )}
     </main>

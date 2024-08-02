@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import navStyles from "../styles/nav.module.scss";
 import layoutStyles from "../styles/layout.module.scss";
@@ -16,7 +16,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "../app/AppContext";
 
-const Nav = ({ onLoad }) => {
+interface NavProps {
+  onLoad: () => void;
+}
+
+const Nav: FC<NavProps> = ({ onLoad }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [isExiting, setIsExiting] = useState(false);
   const [position, setPosition] = useState(0);
@@ -63,113 +67,108 @@ const Nav = ({ onLoad }) => {
   };
 
   return (
-    <>
-      <AnimatePresence mode="wait" initial={initialActive}>
-        {!isExiting && (
-          <>
-            <motion.div className={navStyles.leaves} exit={{ opacity: 0 }}>
-              <FallingLeaves isRightToLeft={false} />
-            </motion.div>
-            <motion.section
-              className={navStyles.container}
-              id="nav"
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageTransition}
-              style={{ zIndex: position }}
-              onAnimationComplete={(definition) => {
-                if (definition === "animate") {
-                  setPosition(2);
-                }
-              }}
-            >
-              <motion.div className={navStyles.container_wrapper}>
-                <ul className={navStyles.container_wrapper_borders}></ul>
+    <AnimatePresence mode="wait" initial={initialActive}>
+      {!isExiting && (
+        <>
+          <motion.div className={navStyles.leaves} exit={{ opacity: 0 }}>
+            <FallingLeaves isRightToLeft={false} />
+          </motion.div>
+          <motion.section
+            className={navStyles.container}
+            id="nav"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={pageTransition}
+            style={{ zIndex: position }}
+            onAnimationComplete={(definition) => {
+              if (definition === "animate") {
+                setPosition(2);
+              }
+            }}
+          >
+            <motion.div className={navStyles.container_wrapper}>
+              <ul className={navStyles.container_wrapper_borders}></ul>
 
-                <ul className={navStyles.container_wrapper_bCards}>
-                  <div>
-                    <li className={hoverIndex === 0 ? navStyles.hover : ""}>
-                      <div></div>
-                    </li>
-                    <li className={hoverIndex === 1 ? navStyles.hover : ""}>
-                      <div></div>
-                    </li>
-                    <li className={hoverIndex === 2 ? navStyles.hover : ""}>
-                      <div></div>
-                    </li>
-                    <li className={hoverIndex === 3 ? navStyles.hover : ""}>
-                      <div></div>
-                    </li>
+              <ul className={navStyles.container_wrapper_bCards}>
+                <div>
+                  <li className={hoverIndex === 0 ? navStyles.hover : ""}>
+                    <div></div>
+                  </li>
+                  <li className={hoverIndex === 1 ? navStyles.hover : ""}>
+                    <div></div>
+                  </li>
+                  <li className={hoverIndex === 2 ? navStyles.hover : ""}>
+                    <div></div>
+                  </li>
+                  <li className={hoverIndex === 3 ? navStyles.hover : ""}>
+                    <div></div>
+                  </li>
+                </div>
+              </ul>
+              <ul className={navStyles.container_wrapper_cards}>
+                <li
+                  onClick={() => handleClick("/about")}
+                  onMouseEnter={() => setHoverIndex(0)}
+                  onMouseLeave={() => setHoverIndex(null)}
+                >
+                  <div className={navStyles.icon}>
+                    <AboutSvg />
                   </div>
-                </ul>
-                <ul className={navStyles.container_wrapper_cards}>
-                  <li
-                    onClick={() => handleClick("/about")}
-                    onMouseEnter={() => setHoverIndex(0)}
-                    onMouseLeave={() => setHoverIndex(null)}
-                  >
-                    <div className={navStyles.icon}>
-                      <AboutSvg />
-                    </div>
-                    <div className={navStyles.image}></div>
-                    <div className={navStyles.title}>
-                      <h1>About</h1>
-                      <p>01</p>
-                    </div>
-                  </li>
-                  <li
-                    onClick={() => handleClick("/projects")}
-                    onMouseEnter={() => setHoverIndex(1)}
-                    onMouseLeave={() => setHoverIndex(null)}
-                  >
-                    <div className={navStyles.icon}>
-                      <ProjectsSvg />
-                    </div>
-                    <div className={navStyles.image}></div>
-                    <div className={navStyles.title}>
-                      <h1>Projects</h1>
-                      <p>02</p>
-                    </div>
-                  </li>
-                  <li
-                    onClick={() => handleClick("/resume")}
-                    onMouseEnter={() => setHoverIndex(2)}
-                    onMouseLeave={() => setHoverIndex(null)}
-                  >
-                    <div className={navStyles.icon}>
-                      <CvSvg />
-                    </div>
-                    <div className={navStyles.image}></div>
-                    <div className={navStyles.title}>
-                      <h1>Resume</h1>
-                      <p>03</p>
-                    </div>
-                  </li>
-                  <li
-                    onClick={() => handleClick("/contact")}
-                    onMouseEnter={() => setHoverIndex(3)}
-                    onMouseLeave={() => setHoverIndex(null)}
-                  >
-                    <div className={navStyles.icon}>
-                      <ContactsSvg />
-                    </div>
-                    <div className={navStyles.image}></div>
-                    <div className={navStyles.title}>
-                      <h1>Contact</h1>
-                      <p>04</p>
-                    </div>
-                  </li>
-                </ul>
-              </motion.div>
-            </motion.section>
-          </>
-        )}
-      </AnimatePresence>
-      <div className={layoutStyles.footer}>
-        <p>{year} | Staugaitis.Marius@gmail.com</p>
-      </div>
-    </>
+                  <div className={navStyles.image}></div>
+                  <div className={navStyles.title}>
+                    <h1>About</h1>
+                    <p>01</p>
+                  </div>
+                </li>
+                <li
+                  onClick={() => handleClick("/projects")}
+                  onMouseEnter={() => setHoverIndex(1)}
+                  onMouseLeave={() => setHoverIndex(null)}
+                >
+                  <div className={navStyles.icon}>
+                    <ProjectsSvg />
+                  </div>
+                  <div className={navStyles.image}></div>
+                  <div className={navStyles.title}>
+                    <h1>Projects</h1>
+                    <p>02</p>
+                  </div>
+                </li>
+                <li
+                  onClick={() => handleClick("/resume")}
+                  onMouseEnter={() => setHoverIndex(2)}
+                  onMouseLeave={() => setHoverIndex(null)}
+                >
+                  <div className={navStyles.icon}>
+                    <CvSvg />
+                  </div>
+                  <div className={navStyles.image}></div>
+                  <div className={navStyles.title}>
+                    <h1>Resume</h1>
+                    <p>03</p>
+                  </div>
+                </li>
+                <li
+                  onClick={() => handleClick("/contact")}
+                  onMouseEnter={() => setHoverIndex(3)}
+                  onMouseLeave={() => setHoverIndex(null)}
+                >
+                  <div className={navStyles.icon}>
+                    <ContactsSvg />
+                  </div>
+                  <div className={navStyles.image}></div>
+                  <div className={navStyles.title}>
+                    <h1>Contact</h1>
+                    <p>04</p>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+          </motion.section>
+        </>
+      )}
+    </AnimatePresence>
   );
 };
 
