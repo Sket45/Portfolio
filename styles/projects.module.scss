@@ -18,7 +18,7 @@
       height: 50%;
       margin: auto 0 auto 0;
       padding: 0 10% 0 10%;
-      background: url(../public/images/bgTile.png);
+      background: url(/images/bgTile.png);
       border-top: 2px solid #724753;
       border-bottom: 2px solid #724753;
 
@@ -34,8 +34,8 @@
         position: relative;
 
         #fileportes {
-          background: url(../public/images/Fileportes.png) border-box
-            padding-box no-repeat;
+          background: url(/images/Fileportes.png) border-box padding-box
+            no-repeat;
           background-size: cover;
           background-position: 85% 50%;
 
@@ -56,8 +56,7 @@
         }
 
         #gambitBot {
-          background: url(../public/images/Gambit.png) border-box padding-box
-            no-repeat;
+          background: url(/images/Gambit.png) border-box padding-box no-repeat;
           background-size: cover;
 
           &::after {
@@ -76,8 +75,8 @@
           }
         }
         #labelTime {
-          background: url(../public/images/LabeltimeC.png) border-box
-            padding-box no-repeat;
+          background: url(/images/LabeltimeC.png) border-box padding-box
+            no-repeat;
           background-size: cover;
           background-position: 0% 50%;
 
@@ -436,8 +435,7 @@
         width: 100%;
         height: 100%;
 
-        background: url(../public/images/Mockup.png) border-box padding-box
-          no-repeat;
+        background: url(/images/Mockup.png) border-box padding-box no-repeat;
         background-size: contain;
         background-position: center;
       }
@@ -459,8 +457,8 @@
 
         box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
         aspect-ratio: 7/4;
-        background: url(../public/images/FileportesCard.png) border-box
-          padding-box no-repeat;
+        background: url(/images/FileportesCard.png) border-box padding-box
+          no-repeat;
         background-size: 100%;
         background-position: center;
       }
