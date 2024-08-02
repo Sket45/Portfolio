@@ -66,10 +66,13 @@ const NavDots: React.FC<NavDotsProps> = ({ navTitles, refs }) => {
       transition: {
         when: "beforeChildren",
         staggerChildren: 0.2,
-        delay: 0.3,
+        delay: 0,
       },
     },
     hidden: {
+      opacity: 0,
+    },
+    exit: {
       opacity: 0,
     },
   };
@@ -84,6 +87,7 @@ const NavDots: React.FC<NavDotsProps> = ({ navTitles, refs }) => {
       className={navStyles.nav}
       initial="hidden"
       animate="visible"
+      exit="exit"
       variants={listVariants}
     >
       <div

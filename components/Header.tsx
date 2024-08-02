@@ -8,9 +8,7 @@ const Header = () => {
   return (
     <section className={headerStyles.container} id="header">
       <div className={headerStyles.container_sky}>
-        <div>
-          <FallingLeaves isRightToLeft={false} />
-        </div>
+        <div>{/* <FallingLeaves isRightToLeft={false} /> */}</div>
       </div>
       <div className={headerStyles.container_credentials}>
         <div className={headerStyles.container_credentials_slogan}>
@@ -32,3 +30,9 @@ const Header = () => {
 };
 
 export default Header;
+
+{
+  /* <motion.div className={navStyles.leaves} exit={{ opacity: 0 }}>
+<FallingLeaves isRightToLeft={false} />
+</motion.div> */
+}

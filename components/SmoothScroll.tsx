@@ -1,7 +1,8 @@
-"use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const SmoothScroll: React.FC = () => {
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
     const easeInOutQuad = (t: number) =>
       t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
@@ -29,6 +30,11 @@ const SmoothScroll: React.FC = () => {
     };
 
     const handleScroll = (event: WheelEvent) => {
+      if (!isInitialized) {
+        setIsInitialized(true);
+        return;
+      }
+
       event.preventDefault();
 
       const sections = document.querySelectorAll("header, section");
@@ -63,7 +69,7 @@ const SmoothScroll: React.FC = () => {
     return () => {
       window.removeEventListener("wheel", handleScroll);
     };
-  }, []);
+  }, [isInitialized]);
 
   return null;
 };

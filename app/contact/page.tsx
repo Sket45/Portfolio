@@ -5,9 +5,11 @@ import contactStyles from "../../styles/contact.module.scss";
 
 import { motion } from "framer-motion";
 
+import { TfiEmail } from "react-icons/tfi";
+
 const Contact = () => {
   const pageTransition = {
-    initial: { y: "100vh" },
+    initial: { y: "-100vh" },
     animate: { y: "0vh" },
   };
   return (
@@ -26,14 +28,14 @@ const Contact = () => {
           <div className={contactStyles.container_box_rightBg_circle}></div>
           <div className={contactStyles.container_box_rightBg_info}>
             <div className={contactStyles.container_box_rightBg_info_icon}>
-              i
+              <TfiEmail />
             </div>
             <div>
-              <h1>FilePortes</h1>
-              <h2>Mudanzas</h2>
+              <h1>Get In Touch </h1>
+              <h2></h2>
             </div>
             <div className={contactStyles.triangle}>t</div>
-            <p>Ongoing Project</p>
+            <p>Staugaitis.Marius@gmail.com</p>
           </div>
         </div>
       </motion.div>

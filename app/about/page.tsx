@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import aboutStyles from "../../styles/about.module.scss";
 
@@ -7,38 +7,62 @@ import NavDots from "../../components/navDots/navDots";
 
 // import myImage from "../../public/images/Marius_S.jpg";
 // import Image from "next/image";
+import ArrowUp from "../../components/arrowUp";
+import ArrowBack from "../arrowBack";
 
 import Skills from "./skills.json";
 import HtmlCssSvg from "../../public/images/svg/html";
 
-import { animate, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const About = () => {
+  const [isExiting, setIsExiting] = useState(false);
+  const [hasPlayedInitialAnimation, setHasPlayedInitialAnimation] =
+    useState(false);
+
+  const handleExit = () => {
+    setIsExiting(true);
+  };
+
   const topPageTransition = {
     initial: { y: "-100vh" },
     animate: { y: "0vh" },
+    exit: { y: "-100vh", transition: { duration: 0.5, delay: 0.3 } },
   };
 
   const botPageTransition = {
     initial: { y: "-60vh", opacity: 0 },
-    animate: { y: "0vh", opacity: 1 },
-  };
-
-  const navPageTransition = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
+    animate: {
+      y: "0vh",
+      opacity: 1,
+      transition: { duration: 0.25, delay: 0.3 },
+    },
+    exit: {
+      y: "-60vh",
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
   };
 
   const nav = ["Who I Am", "About Me", "Passion", "Skill Set"];
 
   const skills = Skills;
 
-  const indexRef = useRef(null);
-  const topRef = useRef(null);
-  const midRef = useRef(null);
-  const botRef = useRef(null);
+  const indexRef = useRef<HTMLDivElement | null>(null);
+  const topRef = useRef<HTMLDivElement | null>(null);
+  const midRef = useRef<HTMLDivElement | null>(null);
+  const botRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const animationPlayed = localStorage.getItem("hasPlayedInitialAnimation");
+    if (animationPlayed) {
+      setHasPlayedInitialAnimation(true);
+    } else {
+      localStorage.setItem("hasPlayedInitialAnimation", "true");
+    }
+
     document.body.style.overflow = "visible";
     document.body.style.height = "100%";
 
@@ -49,60 +73,67 @@ const About = () => {
 
   return (
     <>
-      <section className={aboutStyles.container} ref={indexRef}>
-        <motion.div
-          className={aboutStyles.container_wrapperTop}
-          initial="initial"
-          animate="animate"
-          variants={topPageTransition}
-          transition={{ duration: 0.5 }}
-        >
-          <div className={aboutStyles.container_wrapperTop_bg}></div>
-          <div className={aboutStyles.container_wrapperTop_left}>
-            <div className={aboutStyles.triangle}></div>
-            <h1>ABOUT</h1>
-          </div>
-          <div className={aboutStyles.container_wrapperTop_right}></div>
-        </motion.div>
-        <div className={aboutStyles.container_wrapperBot}>
-          <motion.div
-            className={aboutStyles.container_wrapperBot_left}
-            // initial="initial"
-            // animate="animate"
-            // variants={navPageTransition}
-            // transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <div className={aboutStyles.container_wrapperBot_left_scroll}>
-              SCROLLDOWN
+      <ArrowUp />
+      <AnimatePresence mode="wait" initial={!hasPlayedInitialAnimation}>
+        {!isExiting && (
+          <section className={aboutStyles.container} ref={indexRef}>
+            <motion.div
+              className={aboutStyles.container_wrapperTop}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={topPageTransition}
+              transition={{ duration: 0.5 }}
+            >
+              <div className={aboutStyles.container_wrapperTop_bg}></div>
+              <div className={aboutStyles.container_wrapperTop_left}>
+                <div className={aboutStyles.triangle}></div>
+                <h1>ABOUT</h1>
+              </div>
+              <div className={aboutStyles.container_wrapperTop_right}></div>
+            </motion.div>
+            <div className={aboutStyles.container_wrapperBot}>
+              <motion.div
+                className={aboutStyles.container_wrapperBot_left}
+                // initial="initial"
+                // animate="animate"
+                // variants={navPageTransition}
+                // transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <div className={aboutStyles.container_wrapperBot_left_scroll}>
+                  SCROLLDOWN
+                </div>
+                <NavDots
+                  navTitles={nav}
+                  refs={[indexRef, topRef, midRef, botRef]}
+                />
+              </motion.div>
+              <motion.div
+                className={aboutStyles.container_wrapperBot_right}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={botPageTransition}
+              >
+                <h2>MARIUS STAUGAITIS</h2>
+                <h1>
+                  I love Design, Technology, and the Lasting Impact it leaves.
+                </h1>
+                <p>
+                  With a strong background in hospitality and retail, I've honed
+                  my analytical, leadership, and management skills, complemented
+                  by exceptional customer service and communication abilities. I
+                  bring a diverse skill set to the IT industry, ready to
+                  contribute to a professional team's success and eager to
+                  leverage my skills and experiences to secure a position that
+                  offers professional development and growth opportunities.
+                </p>
+              </motion.div>
             </div>
-            <NavDots
-              navTitles={nav}
-              refs={[indexRef, topRef, midRef, botRef]}
-            />
-          </motion.div>
-          <motion.div
-            className={aboutStyles.container_wrapperBot_right}
-            initial="initial"
-            animate="animate"
-            variants={botPageTransition}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h2>MARIUS STAUGAITIS</h2>
-            <h1>
-              I love Design, Technology, and the Lasting Impact it leaves.
-            </h1>
-            <p>
-              With a strong background in hospitality and retail, I've honed my
-              analytical, leadership, and management skills, complemented by
-              exceptional customer service and communication abilities. I bring
-              a diverse skill set to the IT industry, ready to contribute to a
-              professional team's success and eager to leverage my skills and
-              experiences to secure a position that offers professional
-              development and growth opportunities.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+          </section>
+        )}
+      </AnimatePresence>
+
       <section className={aboutStyles.belowContainer}>
         <div className={aboutStyles.belowContainer_top} ref={topRef}>
           <div className={aboutStyles.belowContainer_top_left}>

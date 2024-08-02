@@ -13,22 +13,6 @@
 
     display: flex;
 
-    &_bg {
-      display: none;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin-top: auto;
-      margin-bottom: auto;
-      width: 100%;
-      height: 55%;
-
-      background: url(../public/images/bgTile.png);
-      border-top: 2px solid #724753;
-      border-bottom: 2px solid #724753;
-      z-index: -3;
-    }
-
     &_listBox {
       width: 100%;
       height: 50%;
@@ -49,6 +33,70 @@
         width: 25%;
         position: relative;
 
+        #fileportes {
+          background: url(../public/images/Fileportes.png) border-box
+            padding-box no-repeat;
+          background-size: cover;
+          background-position: 85% 50%;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: brightness(100%) hue-rotate(340deg);
+            z-index: 0;
+          }
+
+          .container_wrapperTop_listBox_item_image__after {
+            filter: blur(5px) brightness(130%) hue-rotate(330deg);
+          }
+        }
+
+        #gambitBot {
+          background: url(../public/images/Gambit.png) border-box padding-box
+            no-repeat;
+          background-size: cover;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: brightness(100%) saturate(60%) blur(0.5px);
+            z-index: 0;
+          }
+
+          .container_wrapperTop_listBox_item_image__after {
+            filter: blur(5px) brightness(150%) saturate(60%);
+          }
+        }
+        #labelTime {
+          background: url(../public/images/LabeltimeC.png) border-box
+            padding-box no-repeat;
+          background-size: cover;
+          background-position: 0% 50%;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: brightness(90%) saturate(80%) hue-rotate(90deg);
+            z-index: 0;
+          }
+
+          .container_wrapperTop_listBox_item_image__after {
+            filter: blur(5px) brightness(100%) hue-rotate(90deg);
+          }
+        }
+
         &_image {
           width: 100%;
           height: calc(100% + 2px);
@@ -59,10 +107,6 @@
           align-items: center;
           justify-content: flex-end;
           border: 15px solid transparent;
-          background: url(../public/images/Fileportes.png) border-box
-            padding-box no-repeat;
-          background-size: cover;
-          background-position: 85% 50%;
 
           &__after {
             position: absolute;
@@ -91,19 +135,23 @@
           }
 
           > h2 {
+            position: relative;
             width: 30%;
             text-align: center;
             font-size: calc(3em + 1vh);
             color: white;
             margin: 0;
+            z-index: 1;
           }
           > h1 {
+            position: relative;
             text-align: center;
             width: 30%;
-            margin: -2.5% 0 15px 10px;
+            margin: -1.5% 0 15px 10px;
             letter-spacing: 5px;
             font-size: calc(0.2em + 0.5vh);
-            color: #dda5b680;
+            color: #ffffff91;
+            z-index: 1;
           }
         }
 
@@ -168,21 +216,101 @@
     height: 30%;
 
     padding: 0 10% 0 10%;
-    border: 1px solid red;
+    // border: 1px solid red;
 
     display: flex;
     color: white;
 
-    h1,
-    h2 {
-      color: #ffc07b;
-    }
     &_left {
-      width: 50%;
+      width: 60%;
+
+      > div {
+        padding-top: 10%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+          font-family: "Futura PT", sans-serif;
+          font-weight: 300;
+          color: #ffc07b;
+          font-size: calc(2em + 1vh);
+          margin-bottom: 2vh;
+        }
+
+        p {
+          font-family: "Futura PT", sans-serif;
+          font-weight: 300;
+          letter-spacing: 2px;
+          font-size: calc(0.45em + 1vh);
+
+          > a {
+            color: #724753;
+          }
+        }
+      }
     }
 
     &_right {
-      width: 50%;
+      width: 40%;
+
+      > div {
+        padding-top: 15%;
+        padding-left: 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-family: "Futura PT", sans-serif;
+        font-weight: 300;
+
+        color: #ffc07b;
+        font-size: calc(1em + 1vh);
+        margin-bottom: 2vh;
+      }
+
+      ul {
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+
+        > li {
+          all: unset;
+
+          font-family: "Futura PT", sans-serif;
+          font-weight: 300;
+          letter-spacing: 2px;
+          font-size: calc(0.2em + 1vh);
+
+          > a {
+            position: relative;
+            cursor: pointer;
+            color: white;
+            font-size: calc(0.2em + 1vh);
+            font-weight: 600;
+            padding-left: 2.5vh;
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              margin: auto;
+              width: 2vh;
+              height: 2vh;
+              background: url("https://img.icons8.com/?size=100&id=P6uptsK9QN1X&format=png&color=000000");
+              background-size: cover;
+              background-color: white;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -205,7 +333,6 @@
     &_left {
       width: 50%;
       height: fit-content;
-
       display: flex;
       flex-direction: column;
       column-gap: 10%;
@@ -215,7 +342,7 @@
         height: fit-content;
 
         display: flex;
-        gap: 10%;
+        gap: 4vw;
 
         > p {
           position: relative;
@@ -275,35 +402,43 @@
 
   &_top {
     height: 40vh;
+
     &_left {
-    }
-    &_right {
+      height: 100%;
+      width: 40%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-end;
-      z-index: 0;
 
-      > p {
-        width: 70%;
-        margin-bottom: 8%;
-        font-family: "Futura PT", sans-serif;
-        font-weight: 400;
-        font-size: calc(0.2em + 1vh);
-        color: rgba(0, 0, 0, 0.75);
-        text-align: start;
-        line-height: 175%;
+      &_context {
+        width: 100%;
+        height: 100%;
+        padding-left: 27.778%;
+        margin-top: 10%;
+
+        > p {
+          width: 90%;
+          padding: 0 5% 0 0;
+          margin-bottom: 8%;
+          font-family: "Futura PT", sans-serif;
+          font-weight: 400;
+          font-size: calc(0.2em + 1vh);
+          color: rgba(0, 0, 0, 0.75);
+          line-height: 200%;
+        }
       }
+    }
+    &_right {
+      height: 100%;
+      width: 60%;
 
       &_img {
         position: relative;
-        width: 70%;
-        height: 60%;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+        width: 100%;
+        height: 100%;
 
-        background: url(../public/images/Marius_S.jpg) border-box padding-box
+        background: url(../public/images/Mockup.png) border-box padding-box
           no-repeat;
-        background-size: cover;
+        background-size: contain;
         background-position: center;
       }
     }
@@ -312,24 +447,42 @@
   &_bot {
     height: 40vh;
     &_left {
+      height: 100%;
+      width: 60%;
+      &_img {
+        margin-top: 10%;
+        margin-left: 18.517%;
+        display: flex;
+        position: relative;
+
+        width: 70%;
+
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+        aspect-ratio: 7/4;
+        background: url(../public/images/FileportesCard.png) border-box
+          padding-box no-repeat;
+        background-size: 100%;
+        background-position: center;
+      }
     }
     &_right {
+      height: 100%;
+      width: 40%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-end;
       z-index: 0;
-
-      &_img {
-        position: relative;
-        width: 70%;
-        height: 60%;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
-
-        background: url(../public/images/Marius_S.jpg) border-box padding-box
-          no-repeat;
-        background-size: cover;
-        background-position: center;
+      > p {
+        margin-top: 26%;
+        width: 90%;
+        padding: 0 5% 0 0;
+        margin-bottom: 8%;
+        font-family: "Futura PT", sans-serif;
+        font-weight: 400;
+        font-size: calc(0.2em + 1vh);
+        color: rgba(0, 0, 0, 0.75);
+        line-height: 200%;
       }
     }
   }

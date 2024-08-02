@@ -17,7 +17,7 @@
     width: 100%;
     height: 10%;
     position: absolute;
-    z-index: 2;
+    z-index: 1;
   }
 }
 
@@ -28,7 +28,7 @@
   bottom: 0;
   width: 100%;
   transform-style: preserve-3d;
-  z-index: 1;
+  z-index: 0;
 }
 
 .leaf-scene div {

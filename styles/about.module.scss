@@ -61,8 +61,9 @@
       margin: 0 10% 0 10%;
 
       border: 15px solid transparent;
-      background: url(../public/images/background.jpg) border-box padding-box
+      background: url(../public/images/navBg1.png) border-box padding-box
         no-repeat;
+      background-position: center;
       background-size: cover;
 
       &::after {
@@ -233,7 +234,7 @@
         margin-bottom: 8%;
         font-family: "Futura PT", sans-serif;
         font-weight: 400;
-        font-size: calc(0.2em + 1vh);
+        font-size: calc(0.5em + 1vh);
         color: rgba(0, 0, 0, 0.75);
         text-align: start;
         line-height: 175%;
@@ -365,7 +366,7 @@
   }
   &_bot {
     height: 70vh;
-    margin-bottom: 10%;
+    margin-bottom: 15%;
     flex-direction: column;
     &_left {
       height: fit-content;

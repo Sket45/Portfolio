@@ -32,9 +32,9 @@
         top: 5%;
         left: -5%;
         border: 15px solid transparent;
-        background: url(../public/images/Fileportes.png) padding-box no-repeat;
-        background-size: cover;
-        background-position: 50% 50%;
+        background: url(../public/images/navBg4.png) padding-box no-repeat;
+        background-size: auto 115%;
+        background-position: 95% 50%;
 
         &::after {
           content: "";
@@ -48,10 +48,9 @@
           background-clip: border-box;
           border: inherit;
           border-color: transparent;
-          filter: blur(5px) brightness(125%);
+          filter: blur(5px) brightness(150%);
           clip-path: inset(0);
         }
-
         &::before {
           content: "";
           position: absolute;
@@ -60,13 +59,7 @@
           right: -15px;
           bottom: -15px;
           z-index: -2;
-          background: inherit;
-          background-clip: border-box;
-          border: inherit;
-          border-color: transparent;
-          filter: blur(50px) brightness(400%);
-          box-shadow: inset 50px 0 0px 30px;
-          clip-path: inset(0);
+          background-color: #001033;
         }
       }
     }
@@ -120,8 +113,19 @@
           border: 2px solid #724753;
           border-radius: 50%;
           width: 10%;
-          text-align: center;
+          height: 7%;
           backdrop-filter: blur(5px) brightness(160%);
+
+          > svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 50%;
+            height: 50%;
+          }
         }
 
         .triangle {
@@ -134,8 +138,12 @@
         }
 
         h2 {
-          font-size: calc(0.75em + 1vh);
+          font-size: calc(0.3em + 1vh);
           text-align: center;
+        }
+
+        > p {
+          font-size: calc(0.35em + 1vh);
         }
       }
     }

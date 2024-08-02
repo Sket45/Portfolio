@@ -1,7 +1,7 @@
 .container {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 50%;
 
   background: url("../public/images/background.jpg");
   background-position: right;
@@ -9,6 +9,7 @@
   background-repeat: no-repeat;
 
   scroll-snap-align: start;
+  z-index: 1;
 
   &_sky {
   }

@@ -1,8 +1,15 @@
+"use client";
+import React, { useEffect, useState } from "react";
+
 import SmoothScroll from "../components/SmoothScroll";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 
 import indexStyles from "../styles/index.module.scss";
+
+import { useAppContext } from "../app/AppContext";
+
+import { usePathname } from "next/navigation";
 
 import type { Metadata } from "next";
 
@@ -12,11 +19,38 @@ import type { Metadata } from "next";
 // };
 
 const Home: React.FC = () => {
+  const { initialActive, scrollPosition } = useAppContext();
+  const [isNavLoaded, setIsNavLoaded] = useState(false);
+
+  const pathName = usePathname();
+
+  useEffect(() => {
+    if (scrollPosition && pathName == "/") {
+      window.scrollTo(0, window.innerHeight);
+    }
+  }, []);
+
   return (
     <main className={indexStyles.container}>
       <SmoothScroll />
-      <Header />
-      <Nav />
+      {initialActive ? (
+        isNavLoaded ? (
+          <>
+            <Header />
+            <Nav />
+          </>
+        ) : (
+          <>
+            <div className={indexStyles.container_loading}></div>
+            <Nav onLoad={() => setIsNavLoaded(true)} />
+          </>
+        )
+      ) : (
+        <>
+          <Header />
+          <Nav />
+        </>
+      )}
     </main>
   );
 };

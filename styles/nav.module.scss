@@ -1,5 +1,6 @@
 .container {
-  height: 100%;
+  position: relative;
+  height: 50%;
   width: 100%;
   background: url(../public/images/backgroundB.png);
   background-position: right;
@@ -9,6 +10,7 @@
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
+  z-index: 2;
 
   &_wrapper {
     height: 60%; //main height for wrapper and cards
@@ -148,27 +150,27 @@
       gap: 2%;
 
       li:nth-of-type(1) .image {
-        background: url(../public/images/micro1.png);
-        background-position: 50% 25%;
-        background-size: auto;
+        background: url(../public/images/navBg1.png);
+        background-position: left;
+        background-size: 300%;
         background-repeat: no-repeat;
       }
       li:nth-of-type(2) .image {
-        background: url(../public/images/micro6.png);
-        background-position: 25% 25%;
-        background-size: auto;
+        background: url(../public/images/navBg2.png);
+        background-position: left;
+        background-size: 300%;
         background-repeat: no-repeat;
       }
       li:nth-of-type(3) .image {
-        background: url(../public/images/micro3.png);
-        background-position: 15% 25%;
-        background-size: auto;
+        background: url(../public/images/navBg3.png);
+        background-position: right;
+        background-size: 300%;
         background-repeat: no-repeat;
       }
       li:nth-of-type(4) .image {
-        background: url(../public/images/micro4.png);
-        background-position: 50% 25%;
-        background-size: auto;
+        background: url(../public/images/navBg4.png);
+        background-position: right;
+        background-size: 300%;
         background-repeat: no-repeat;
       }
 
@@ -335,4 +337,12 @@
   to {
     transform: translate(-50%, 50%);
   }
+}
+
+.leaves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
