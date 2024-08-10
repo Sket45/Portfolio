@@ -5,24 +5,18 @@ import aboutStyles from "../../styles/about.module.scss";
 
 import NavDots from "../../components/navDots/navDots";
 
-// import myImage from "../../public/images/Marius_S.jpg";
-// import Image from "next/image";
 import ArrowUp from "../../components/arrowUp";
-import ArrowBack from "../arrowBack";
 
 import Skills from "./skills.json";
 import HtmlCssSvg from "../../public/images/svg/html";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useAppContext } from "../AppContext";
 
 const About = () => {
-  const [isExiting, setIsExiting] = useState(false);
   const [hasPlayedInitialAnimation, setHasPlayedInitialAnimation] =
     useState(false);
-
-  const handleExit = () => {
-    setIsExiting(true);
-  };
+  const { isExiting, setIsExiting } = useAppContext();
 
   const topPageTransition = {
     initial: { y: "-100vh" },
@@ -68,71 +62,74 @@ const About = () => {
 
     return () => {
       document.body.style.overflow = "hidden";
+      setIsExiting(false);
     };
   }, []);
 
   return (
     <>
-      <ArrowUp />
-      <AnimatePresence mode="wait" initial={!hasPlayedInitialAnimation}>
-        {!isExiting && (
-          <section className={aboutStyles.container} ref={indexRef}>
-            <motion.div
-              className={aboutStyles.container_wrapperTop}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={topPageTransition}
-              transition={{ duration: 0.5 }}
-            >
-              <div className={aboutStyles.container_wrapperTop_bg}></div>
-              <div className={aboutStyles.container_wrapperTop_left}>
-                <div className={aboutStyles.triangle}></div>
-                <h1>ABOUT</h1>
-              </div>
-              <div className={aboutStyles.container_wrapperTop_right}></div>
-            </motion.div>
-            <div className={aboutStyles.container_wrapperBot}>
+      <section className={aboutStyles.container} ref={indexRef}>
+        <AnimatePresence mode="wait" initial={!hasPlayedInitialAnimation}>
+          {!isExiting && (
+            <>
               <motion.div
-                className={aboutStyles.container_wrapperBot_left}
-                // initial="initial"
-                // animate="animate"
-                // variants={navPageTransition}
-                // transition={{ duration: 0.5, delay: 0.8 }}
-              >
-                <div className={aboutStyles.container_wrapperBot_left_scroll}>
-                  SCROLLDOWN
-                </div>
-                <NavDots
-                  navTitles={nav}
-                  refs={[indexRef, topRef, midRef, botRef]}
-                />
-              </motion.div>
-              <motion.div
-                className={aboutStyles.container_wrapperBot_right}
+                className={aboutStyles.container_wrapperTop}
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                variants={botPageTransition}
+                variants={topPageTransition}
+                transition={{ duration: 0.5 }}
               >
-                <h2>MARIUS STAUGAITIS</h2>
-                <h1>
-                  I love Design, Technology, and the Lasting Impact it leaves.
-                </h1>
-                <p>
-                  With a strong background in hospitality and retail, I've honed
-                  my analytical, leadership, and management skills, complemented
-                  by exceptional customer service and communication abilities. I
-                  bring a diverse skill set to the IT industry, ready to
-                  contribute to a professional team's success and eager to
-                  leverage my skills and experiences to secure a position that
-                  offers professional development and growth opportunities.
-                </p>
+                <div className={aboutStyles.container_wrapperTop_bg}></div>
+                <div className={aboutStyles.container_wrapperTop_left}>
+                  {/* <div className={aboutStyles.triangle}></div>
+                  <h1>ABOUT</h1> */}
+                </div>
+                <div className={aboutStyles.container_wrapperTop_right}></div>
               </motion.div>
-            </div>
-          </section>
-        )}
-      </AnimatePresence>
+              <div className={aboutStyles.container_wrapperBot}>
+                <motion.div
+                  className={aboutStyles.container_wrapperBot_left}
+                  // initial="initial"
+                  // animate="animate"
+                  // variants={navPageTransition}
+                  // transition={{ duration: 0.5, delay: 0.8 }}
+                >
+                  <div className={aboutStyles.container_wrapperBot_left_scroll}>
+                    SCROLLDOWN
+                  </div>
+                  <NavDots
+                    navTitles={nav}
+                    refs={[indexRef, topRef, midRef, botRef]}
+                  />
+                </motion.div>
+                <motion.div
+                  className={aboutStyles.container_wrapperBot_right}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={botPageTransition}
+                >
+                  <h2>MARIUS STAUGAITIS</h2>
+                  <h1>
+                    I love Design, Technology, and the Lasting Impact it leaves.
+                  </h1>
+                  <p>
+                    With a strong background in hospitality and retail, I've
+                    honed my analytical, leadership, and management skills,
+                    complemented by exceptional customer service and
+                    communication abilities. I bring a diverse skill set to the
+                    IT industry, ready to contribute to a professional team's
+                    success and eager to leverage my skills and experiences to
+                    secure a position that offers professional development and
+                    growth opportunities.
+                  </p>
+                </motion.div>
+              </div>
+            </>
+          )}
+        </AnimatePresence>
+      </section>
 
       <section className={aboutStyles.belowContainer}>
         <div className={aboutStyles.belowContainer_top} ref={topRef}>
@@ -170,8 +167,11 @@ const About = () => {
           </div>
           <div className={aboutStyles.belowContainer_mid_right}>
             <div className={aboutStyles.belowContainer_mid_right_design}>
-              <div></div>
-              <h1>DESIGN</h1>
+              <div>
+                <div></div>
+                <h1>DESIGN</h1>
+              </div>
+
               <p>
                 Design is more than just aesthetics; it's about creating
                 intuitive and engaging user experiences. I've always had a keen
@@ -183,8 +183,11 @@ const About = () => {
               </p>
             </div>
             <div className={aboutStyles.belowContainer_mid_right_tech}>
-              <div></div>
-              <h1>TECHNOLOGY</h1>
+              <div>
+                <div></div>
+                <h1>TECHNOLOGY</h1>
+              </div>
+
               <p>
                 From a young age, technology has been my playground, always
                 eager to learn and explore more. This curiosity drove me to
@@ -196,8 +199,11 @@ const About = () => {
               </p>
             </div>
             <div className={aboutStyles.belowContainer_mid_right_impact}>
-              <div></div>
-              <h1>LASTING IMPACT</h1>
+              <div>
+                <div></div>
+                <h1>LASTING IMPACT</h1>
+              </div>
+
               <p>
                 My ultimate goal as a developer is to leave a lasting impact
                 through my work. I believe in using technology to make a

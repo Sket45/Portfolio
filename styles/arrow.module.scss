@@ -1,11 +1,12 @@
 .arrowUp {
   position: fixed;
   bottom: 10%;
-  right: 2.5%;
+  right: 1.5%;
   width: 5vh;
   height: 5vh;
 
   cursor: pointer;
+  z-index: 5;
 
   > svg {
     width: 100%;

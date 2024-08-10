@@ -11,6 +11,7 @@
   align-items: center;
   scroll-snap-align: start;
   z-index: 2;
+  overflow: hidden;
 
   &_wrapper {
     height: 60%; //main height for wrapper and cards
@@ -29,10 +30,6 @@
       left: 10%;
       backdrop-filter: blur(5px);
       z-index: 1;
-
-      > li {
-        all: unset;
-      }
     }
 
     &_bCards {
@@ -345,4 +342,94 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 1000px) {
+  .container_wrapper {
+    &_arrowLeft,
+    &_arrowRight {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+
+      width: 10%;
+      margin: 11.75% 0 15% 0;
+      height: 73.25%;
+      background-color: rgb(0, 0, 0, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.5;
+
+      transition: all 0.3s ease-in-out;
+      z-index: 6;
+
+      > svg {
+        color: white;
+        width: 3.5vh;
+        height: 3.5vh;
+      }
+
+      &:hover {
+        opacity: 1;
+        background-color: rgb(0, 0, 0, 0.3);
+      }
+    }
+
+    &_arrowLeft {
+      left: 0;
+      padding-left: 1vh;
+    }
+    &_arrowRight {
+      right: 0;
+      padding-left: 1vh;
+    }
+  }
+  .container_wrapper_borders {
+    width: 60%;
+    left: 20%;
+  }
+
+  .container_wrapper_bCards {
+    width: 59.7%;
+    > div {
+      > li {
+        width: 50%;
+        // display: none;
+      }
+    }
+  }
+  .container_wrapper_cards {
+    width: 75%;
+    li {
+      width: 50%; /* Show two items at a time */
+      // transition: transform 0.5s ease-in-out;
+      // display: none; /* Initially hide all elements */
+    }
+  }
+}
+
+@media (max-width: 630px) {
+  .container_wrapper_borders {
+    width: 60%;
+    left: 20%;
+  }
+
+  .container_wrapper_bCards {
+    width: 59.7%;
+    > div {
+      > li {
+        width: 100%;
+        // display: none;
+      }
+    }
+  }
+  .container_wrapper_cards {
+    width: 75%;
+    li {
+      width: 100%; /* Show two items at a time */
+      // transition: transform 0.5s ease-in-out;
+      // display: none; /* Initially hide all elements */
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "./AppContext";
 
@@ -14,19 +14,39 @@ interface ArrowBackProps {
 
 const ArrowBack: FC<ArrowBackProps> = ({ onExit }) => {
   const router = useRouter();
-  const { setInitialActive, setScrollPosition } = useAppContext();
+  const { setInitialActive, setScrollPosition, setIsExiting } = useAppContext();
+  const [display, setDisplay] = useState("block");
 
   const handleClick = () => {
-    onExit();
+    setIsExiting(true);
     setTimeout(() => {
       setInitialActive(true);
       setScrollPosition(true);
       router.push("/");
-    }, 500);
+    }, 600);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      scrollY > windowHeight ? setDisplay("none") : setDisplay("block");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <motion.div className={arrowStyles.arrowBack} onClick={() => handleClick()}>
+    <motion.div
+      className={arrowStyles.arrowBack}
+      onClick={() => handleClick()}
+      style={{ display: display }}
+    >
       <IoMdArrowBack />
     </motion.div>
   );

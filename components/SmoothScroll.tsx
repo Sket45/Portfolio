@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 
+import { useAppContext } from "@/app/AppContext";
+
 const SmoothScroll: React.FC = () => {
   const [isInitialized, setIsInitialized] = useState(false);
+  const { isScrollDisabled } = useAppContext();
 
   useEffect(() => {
+    if (isScrollDisabled) return;
     const easeInOutQuad = (t: number) =>
       t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
@@ -69,7 +73,7 @@ const SmoothScroll: React.FC = () => {
     return () => {
       window.removeEventListener("wheel", handleScroll);
     };
-  }, [isInitialized]);
+  }, [isInitialized, isScrollDisabled]);
 
   return null;
 };

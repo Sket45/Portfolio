@@ -15,6 +15,10 @@ body {
   overflow: hidden;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 @font-face {
   font-family: "Montreal Regular";
   font-style: normal;

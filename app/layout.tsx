@@ -1,28 +1,23 @@
 "use client";
 
 import "./globals.css";
-import React, { useState } from "react";
+import React from "react";
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { AppProvider } from "./AppContext";
 
 import layoutStyles from "../styles/layout.module.scss";
 
-import ArrowBack from "./arrowBack";
+import ArrowUp from "@/components/arrowUp";
+import LayoutNav from "@/components/layoutNav";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isExiting, setIsExiting] = useState(false);
   const pathname = usePathname();
-
   const year = new Date().getFullYear();
-
-  const handleExit = () => {
-    setIsExiting(true);
-  };
 
   return (
     <html lang="en">
@@ -30,12 +25,15 @@ export default function RootLayout({
         <AppProvider>
           <AnimatePresence mode="wait" initial={false}>
             <div key={pathname}>
-              <div>
-                <div>
-                  <ArrowBack onExit={handleExit} />
-                </div>
-              </div>
+              <LayoutNav pathname={pathname} />
               {children}
+              {pathname === "/" ||
+              pathname === "/resume" ||
+              pathname === "/contact" ? (
+                <></>
+              ) : (
+                <ArrowUp />
+              )}
               <div
                 className={layoutStyles.footer}
                 style={{ marginTop: pathname === "/" ? "-8vh" : "0" }}
