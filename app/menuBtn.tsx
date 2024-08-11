@@ -10,9 +10,9 @@ const MenuBtn = () => {
   const [active, setActive] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [color, setColor] = useState("white");
-  const { setScrollDisabled, setNavActive, navActive } = useAppContext();
-  const [shadow, setShadow] = useState(`0 1px 5px 0 rgba(0, 0, 0, 0.3)`);
-  const [display, setDisplay] = useState("block");
+  const { setScrollDisabled, setNavActive, isExiting } = useAppContext();
+
+  const [display, setDisplay] = useState(true);
 
   const pathName = usePathname();
 
@@ -39,12 +39,12 @@ const MenuBtn = () => {
       scrollY > windowHeight ? setColor("black") : setColor("white");
 
       scrollY > windowHeight - 100 && pathName === "/"
-        ? setDisplay("none")
-        : setDisplay("block");
+        ? setDisplay(false)
+        : setDisplay(true);
     };
     scrollY > window.innerHeight - 100 && pathName === "/"
-      ? setDisplay("none")
-      : setDisplay("block");
+      ? setDisplay(false)
+      : setDisplay(true);
 
     window.addEventListener("scroll", handleScroll);
 
@@ -62,17 +62,49 @@ const MenuBtn = () => {
     { label: "CONTACT", href: "/contact" },
   ];
 
+  const menuBtnVariants = {
+    initial: { opacity: 0, x: "200%" },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        x: { delay: 0.4, duration: 0.4, ease: "easeInOut" },
+        opacity: { delay: 0.5, duration: 0.4, ease: "easeInOut" },
+      },
+    },
+    exit: {
+      opacity: 0,
+      x: "200%",
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
     <>
-      <div className={classNameBtn} onClick={() => handleClick()}>
-        {[0, 1, 2].map((span) => (
-          <span
-            key={`span-${span}`}
-            style={{ background: color, boxShadow: shadow, display: display }}
-          ></span>
-        ))}
-      </div>
-
+      <AnimatePresence mode="wait">
+        {!isExiting && display && (
+          <motion.div
+            className={classNameBtn}
+            onClick={() => handleClick()}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={menuBtnVariants}
+          >
+            {[0, 1, 2].map((span) => (
+              <span
+                key={`span-${span}`}
+                style={{
+                  background: color,
+                }}
+              ></span>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence onExitComplete={() => setNavActive(false)}>
         {active && (
           <motion.div

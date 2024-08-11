@@ -150,3 +150,60 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .container {
+    &_box {
+      &_rightBg {
+        &_info {
+          font-size: calc(1.5em + 1vw);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    &_box {
+      &_leftBg {
+        height: 100%;
+        width: 50%;
+
+        &_image {
+          display: none;
+        }
+      }
+
+      &_rightBg {
+        position: relative;
+        height: 100%;
+        width: 50%;
+        top: 0;
+        right: 0;
+        background-color: #6d324871;
+
+        &_info {
+          font-size: calc(1.5em + 1vw);
+
+          &_icon {
+            width: 20%;
+            height: 12%;
+          }
+
+          h1 {
+            text-align: center;
+          }
+
+          h2 {
+            font-size: calc(0.3em + 1vh);
+          }
+
+          > p {
+            font-size: calc(0.4em + 1vw);
+          }
+        }
+      }
+    }
+  }
+}

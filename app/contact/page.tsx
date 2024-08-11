@@ -24,7 +24,7 @@ const Contact = () => {
 
   return (
     <section className={contactStyles.container}>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {!isExiting && (
           <>
             <motion.div

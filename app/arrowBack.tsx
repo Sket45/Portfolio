@@ -6,7 +6,8 @@ import arrowStyles from "../styles/arrowBack.module.scss";
 
 import { IoMdArrowBack } from "react-icons/io";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { transcode } from "buffer";
 
 interface ArrowBackProps {
   onExit: () => void;
@@ -14,7 +15,8 @@ interface ArrowBackProps {
 
 const ArrowBack: FC<ArrowBackProps> = ({ onExit }) => {
   const router = useRouter();
-  const { setInitialActive, setScrollPosition, setIsExiting } = useAppContext();
+  const { setInitialActive, setScrollPosition, setIsExiting, isExiting } =
+    useAppContext();
   const [display, setDisplay] = useState("block");
 
   const handleClick = () => {
@@ -41,14 +43,42 @@ const ArrowBack: FC<ArrowBackProps> = ({ onExit }) => {
     };
   }, []);
 
+  const arrowVariants = {
+    initial: { opacity: 0, x: "-200%" },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        x: { delay: 0.4, duration: 0.4, ease: "easeInOut" },
+        opacity: { delay: 0.5, duration: 0.4, ease: "easeInOut" },
+      },
+    },
+    exit: {
+      opacity: 0,
+      x: "-200%",
+      transition: {
+        duration: 0.4,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
-    <motion.div
-      className={arrowStyles.arrowBack}
-      onClick={() => handleClick()}
-      style={{ display: display }}
-    >
-      <IoMdArrowBack />
-    </motion.div>
+    <AnimatePresence mode="wait">
+      {!isExiting && (
+        <motion.div
+          className={arrowStyles.arrowBack}
+          onClick={() => handleClick()}
+          style={{ display: display }}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={arrowVariants}
+        >
+          <IoMdArrowBack />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
