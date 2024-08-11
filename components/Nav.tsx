@@ -82,7 +82,7 @@ const Nav: FC<NavProps> = ({ onLoad }) => {
     setIsExiting(true);
     setTimeout(() => {
       router.push(href);
-    }, 500);
+    }, 600);
   };
 
   const handleNext = () => {

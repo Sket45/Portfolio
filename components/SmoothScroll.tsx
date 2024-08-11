@@ -69,10 +69,55 @@ const SmoothScroll: React.FC = () => {
       smoothScrollTo(sectionPositions[targetSectionIndex]);
     };
 
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    const handleTouchStart = (event: TouchEvent) => {
+      touchStartY = event.touches[0].clientY;
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      touchEndY = event.touches[0].clientY;
+    };
+
+    const handleTouchEnd = () => {
+      const delta = touchStartY - touchEndY;
+      const sections = document.querySelectorAll("header, section");
+      const sectionPositions = Array.from(sections).map(
+        (section) => (section as HTMLElement).offsetTop
+      );
+
+      const currentScroll = window.scrollY;
+
+      let targetSectionIndex =
+        delta > 0
+          ? sectionPositions.findIndex(
+              (position) => position > currentScroll + 1
+            )
+          : sectionPositions
+              .slice()
+              .reverse()
+              .findIndex((position) => position < currentScroll - 1);
+
+      if (targetSectionIndex === -1) {
+        targetSectionIndex = delta > 0 ? sections.length - 1 : 0;
+      } else if (delta < 0) {
+        targetSectionIndex = sections.length - 1 - targetSectionIndex;
+      }
+
+      smoothScrollTo(sectionPositions[targetSectionIndex]);
+    };
+
     window.addEventListener("wheel", handleScroll, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isInitialized, isScrollDisabled]);
 
