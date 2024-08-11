@@ -9,11 +9,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
 import { transcode } from "buffer";
 
-interface ArrowBackProps {
-  onExit: () => void;
-}
-
-const ArrowBack: FC<ArrowBackProps> = ({ onExit }) => {
+const ArrowBack = () => {
   const router = useRouter();
   const { setInitialActive, setScrollPosition, setIsExiting, isExiting } =
     useAppContext();

@@ -9,19 +9,14 @@ interface LayoutNavProps {
 }
 
 const LayoutNav: FC<LayoutNavProps> = ({ pathname }) => {
-  const [isExiting, setIsExiting] = useState(false);
   const { navActive } = useAppContext();
-
-  const handleExit = () => {
-    setIsExiting(true);
-  };
 
   return (
     <div
       className={layoutNavBarStyles.navBar}
       style={{ zIndex: navActive ? 5 : 4 }}
     >
-      {pathname === "/" ? <></> : <ArrowBack onExit={handleExit} />}
+      {pathname === "/" ? <></> : <ArrowBack />}
       <MenuBtn />
     </div>
   );
