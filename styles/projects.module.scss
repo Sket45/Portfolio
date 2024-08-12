@@ -8,6 +8,7 @@
   font-family: "Montreal Regular", sans-serif;
 
   &_wrapperTop {
+    position: relative;
     width: 100%;
     height: 70%;
 
@@ -506,6 +507,7 @@
 
   &_bot {
     height: 50vh;
+    margin-bottom: 5%;
     &_left {
       height: 100%;
       width: 60%;
@@ -614,15 +616,15 @@
 }
 
 @media (max-width: 1000px) {
-  .container_wrapper {
+  .container_wrapperTop {
     &_arrowLeft,
     &_arrowRight {
       cursor: pointer;
       position: absolute;
       top: 0;
-
+      bottom: 0;
       width: 10%;
-      margin: 25% 0 2% 0;
+      margin: auto 0;
       height: 50%;
       background-color: rgb(0, 0, 0, 0);
       display: flex;
@@ -1113,7 +1115,7 @@
     }
 
     &_top {
-      height: 70vh;
+      height: 60vh;
       flex-direction: column;
 
       &_left {
@@ -1142,6 +1144,8 @@
       height: fit-content;
       position: relative;
       margin-bottom: 10%;
+      display: flex;
+      flex-direction: column;
 
       &_left {
         height: 100%;
@@ -1152,8 +1156,7 @@
 
         &_img {
           width: 60%;
-          margin-top: 5%;
-          margin-left: 10%;
+          margin: 10% auto;
 
           box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 10px -2.5px;
           aspect-ratio: 7/4;
@@ -1164,12 +1167,10 @@
         }
 
         &_wrapper {
-          padding-left: 20%;
-          padding-right: 5%;
+          padding: 0 10% 0 10%;
         }
       }
       &_right {
-        margin-top: 30%;
         height: fit-content;
         width: 100%;
         display: flex;
@@ -1190,8 +1191,8 @@
         }
 
         &_wrapper {
-          padding-top: 3.7vh;
-          padding-left: 5%;
+          padding: 0 10% 0 10%;
+
           > div h1,
           > div p {
             padding-left: 10%;

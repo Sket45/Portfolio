@@ -169,7 +169,7 @@ const Projects = () => {
             : { width: "50%", position: "relative" as "relative" };
         case "botRight":
           return windowWidth < 1000
-            ? { marginTop: "30%" }
+            ? { marginTop: "35%" }
             : { width: "50%", marginTop: "3%" };
         default:
           return {};
@@ -195,13 +195,13 @@ const Projects = () => {
                 {windowWidth && windowWidth < 1000 && (
                   <>
                     <div
-                      className={projectStyles.container_wrapper_arrowLeft}
+                      className={projectStyles.container_wrapperTop_arrowLeft}
                       onClick={handlePrev}
                     >
                       <MdArrowBackIos />
                     </div>
                     <div
-                      className={projectStyles.container_wrapper_arrowRight}
+                      className={projectStyles.container_wrapperTop_arrowRight}
                       onClick={handleNext}
                     >
                       <MdArrowForwardIos />
