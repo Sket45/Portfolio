@@ -1,46 +1,34 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
+
 import SmoothScroll from "../components/SmoothScroll";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+
 import indexStyles from "../styles/index.module.scss";
+
 import { useAppContext } from "../app/AppContext";
+
 import { usePathname } from "next/navigation";
+
+// import type { Metadata } from "next";
+
+// export const metadata: Metadata = {
+//   title: "Home - Portfolio",
+//   description: "Marius S. Portfolio Home Page",
+// };
 
 const Home: React.FC = () => {
   const { initialActive, scrollPosition } = useAppContext();
   const [isNavLoaded, setIsNavLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+
   const pathName = usePathname();
 
   useEffect(() => {
-    const updateIsMobile = () => {
-      if (window.innerWidth < 1000) {
-        console.log("is mobile");
-        setIsMobile(true);
-        document.body.style.overflow = "visible";
-      } else {
-        setIsMobile(false);
-        document.body.style.overflow = "hidden";
-      }
-    };
-
-    updateIsMobile(); // Call initially to set state based on initial window size
-
-    window.addEventListener("resize", updateIsMobile);
-
-    return () => {
-      document.body.style.overflow = "hidden"; // Restore overflow when unmounting
-      window.removeEventListener("resize", updateIsMobile);
-    };
-  }, []); // Empty dependency array ensures this runs only on mount and unmount
-
-  useEffect(() => {
-    if (scrollPosition && pathName === "/") {
+    if (scrollPosition && pathName == "/") {
       window.scrollTo(0, window.innerHeight);
     }
-  }, [scrollPosition, pathName]);
+  }, []);
 
   return (
     <main className={indexStyles.container}>

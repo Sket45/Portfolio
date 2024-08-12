@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { useAppContext } from "@/app/AppContext";
 
 const SmoothScroll: React.FC = () => {
@@ -41,17 +42,31 @@ const SmoothScroll: React.FC = () => {
 
       event.preventDefault();
 
+      const sections = document.querySelectorAll("header, section");
+      const sectionPositions = Array.from(sections).map(
+        (section) => (section as HTMLElement).offsetTop
+      );
+
       const delta = Math.sign(event.deltaY);
       const currentScroll = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      const maxScroll = document.documentElement.scrollHeight - viewportHeight;
 
-      let targetScroll =
+      let targetSectionIndex =
         delta > 0
-          ? Math.min(currentScroll + viewportHeight, maxScroll)
-          : Math.max(currentScroll - viewportHeight, 0);
+          ? sectionPositions.findIndex(
+              (position) => position > currentScroll + 1
+            )
+          : sectionPositions
+              .slice()
+              .reverse()
+              .findIndex((position) => position < currentScroll - 1);
 
-      smoothScrollTo(targetScroll);
+      if (targetSectionIndex === -1) {
+        targetSectionIndex = delta > 0 ? sections.length - 1 : 0;
+      } else if (delta < 0) {
+        targetSectionIndex = sections.length - 1 - targetSectionIndex;
+      }
+
+      smoothScrollTo(sectionPositions[targetSectionIndex]);
     };
 
     let touchStartY = 0;
@@ -67,16 +82,30 @@ const SmoothScroll: React.FC = () => {
 
     const handleTouchEnd = () => {
       const delta = touchStartY - touchEndY;
+      const sections = document.querySelectorAll("header, section");
+      const sectionPositions = Array.from(sections).map(
+        (section) => (section as HTMLElement).offsetTop
+      );
+
       const currentScroll = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      const maxScroll = document.documentElement.scrollHeight - viewportHeight;
 
-      let targetScroll =
+      let targetSectionIndex =
         delta > 0
-          ? Math.min(currentScroll + viewportHeight, maxScroll)
-          : Math.max(currentScroll - viewportHeight, 0);
+          ? sectionPositions.findIndex(
+              (position) => position > currentScroll + 1
+            )
+          : sectionPositions
+              .slice()
+              .reverse()
+              .findIndex((position) => position < currentScroll - 1);
 
-      smoothScrollTo(targetScroll);
+      if (targetSectionIndex === -1) {
+        targetSectionIndex = delta > 0 ? sections.length - 1 : 0;
+      } else if (delta < 0) {
+        targetSectionIndex = sections.length - 1 - targetSectionIndex;
+      }
+
+      smoothScrollTo(sectionPositions[targetSectionIndex]);
     };
 
     window.addEventListener("wheel", handleScroll, { passive: false });
