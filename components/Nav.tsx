@@ -22,8 +22,6 @@ interface NavProps {
 }
 
 const Nav: FC<NavProps> = ({ onLoad }) => {
-  const [isExiting, setIsExiting] = useState(false);
-
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [position, setPosition] = useState(0);
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
@@ -34,7 +32,7 @@ const Nav: FC<NavProps> = ({ onLoad }) => {
   const [isInitialLoad, setIsInitialLoad] = useState(false);
 
   const router = useRouter();
-  const { initialActive } = useAppContext();
+  const { initialActive, isExiting, setIsExiting } = useAppContext();
 
   const items = [
     { label: "About", icon: <AboutSvg />, href: "/about" },

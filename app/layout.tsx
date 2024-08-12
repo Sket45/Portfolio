@@ -10,6 +10,7 @@ import layoutStyles from "../styles/layout.module.scss";
 
 import ArrowUp from "@/components/arrowUp";
 import LayoutNav from "@/components/layoutNav";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -17,7 +18,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const year = new Date().getFullYear();
 
   useEffect(() => {
     const setVH = () => {
@@ -26,9 +26,9 @@ export default function RootLayout({
       document.documentElement.style.setProperty("--vh", `${vh}px`);
     };
 
-    setVH(); // Initial setup
+    setVH();
 
-    window.addEventListener("resize", setVH); // Update on resize
+    window.addEventListener("resize", setVH);
 
     return () => {
       window.removeEventListener("resize", setVH);
@@ -50,12 +50,7 @@ export default function RootLayout({
               ) : (
                 <ArrowUp />
               )}
-              <div
-                className={layoutStyles.footer}
-                style={{ marginTop: pathname === "/" ? "-8vh" : "0" }}
-              >
-                <p>{year} | Staugaitis.Marius@gmail.com</p>
-              </div>
+              <Footer pathname={pathname} />
             </div>
           </AnimatePresence>
         </AppProvider>
