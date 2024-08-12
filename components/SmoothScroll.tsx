@@ -44,8 +44,12 @@ const SmoothScroll: React.FC = () => {
       const delta = Math.sign(event.deltaY);
       const currentScroll = window.scrollY;
       const viewportHeight = window.innerHeight;
+      const maxScroll = document.documentElement.scrollHeight - viewportHeight;
 
-      let targetScroll = currentScroll + delta * viewportHeight;
+      let targetScroll =
+        delta > 0
+          ? Math.min(currentScroll + viewportHeight, maxScroll)
+          : Math.max(currentScroll - viewportHeight, 0);
 
       smoothScrollTo(targetScroll);
     };
@@ -65,9 +69,12 @@ const SmoothScroll: React.FC = () => {
       const delta = touchStartY - touchEndY;
       const currentScroll = window.scrollY;
       const viewportHeight = window.innerHeight;
+      const maxScroll = document.documentElement.scrollHeight - viewportHeight;
 
       let targetScroll =
-        currentScroll + (delta > 0 ? viewportHeight : -viewportHeight);
+        delta > 0
+          ? Math.min(currentScroll + viewportHeight, maxScroll)
+          : Math.max(currentScroll - viewportHeight, 0);
 
       smoothScrollTo(targetScroll);
     };
