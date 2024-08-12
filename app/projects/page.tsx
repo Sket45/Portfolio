@@ -111,10 +111,6 @@ const Projects = () => {
     });
   };
 
-  useEffect(() => {
-    setActiveIndex(visibleItems[0]);
-  }, [visibleItems]);
-
   const transitionVariants = {
     initial: (direction: "next" | "prev" | boolean) => ({
       x: isInitialLoad ? (direction === "next" ? "-100vw" : "100vw") : 0,
@@ -158,6 +154,8 @@ const Projects = () => {
         });
         break;
     }
+
+    setActiveIndex(visibleItems[0]);
   }, [visibleItems]);
 
   const useMediaStyling = (area: string, windowWidth: number) => {
