@@ -5,6 +5,7 @@ import { useAppContext } from "@/app/AppContext";
 const SmoothScroll: React.FC = () => {
   const [isInitialized, setIsInitialized] = useState(false);
   const { isScrollDisabled } = useAppContext();
+  const touchThreshold = 50;
 
   useEffect(() => {
     if (isScrollDisabled) return;
@@ -82,6 +83,12 @@ const SmoothScroll: React.FC = () => {
 
     const handleTouchEnd = () => {
       const delta = touchStartY - touchEndY;
+
+      if (Math.abs(delta) < touchThreshold) {
+        // If the touch movement is below the threshold, ignore the scroll
+        return;
+      }
+
       const sections = document.querySelectorAll("header, section");
       const sectionPositions = Array.from(sections).map(
         (section) => (section as HTMLElement).offsetTop
