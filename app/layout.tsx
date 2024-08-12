@@ -1,7 +1,7 @@
 "use client";
 
 import "./globals.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { AppProvider } from "./AppContext";
@@ -18,6 +18,22 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const year = new Date().getFullYear();
+
+  useEffect(() => {
+    const setVH = () => {
+      // Calculate 1% of the viewport height and set it as a custom property
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setVH(); // Initial setup
+
+    window.addEventListener("resize", setVH); // Update on resize
+
+    return () => {
+      window.removeEventListener("resize", setVH);
+    };
+  }, []);
 
   return (
     <html lang="en">

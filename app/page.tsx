@@ -44,7 +44,7 @@ const Home: React.FC = () => {
 
   return (
     <main className={indexStyles.container}>
-      {!isMobile && <SmoothScroll />}
+      <SmoothScroll />
       {initialActive ? (
         isNavLoaded ? (
           <>
